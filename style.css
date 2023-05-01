@@ -1,0 +1,30 @@
+
+
+body,html
+{
+  background-color: #222222;
+  overflow: hidden;
+  color:aqua;
+}
+#planet
+{
+  clear: both;
+  height: 75%;
+}
+header
+{
+  width: 100%;
+}
+.navbar
+{
+  background-color: #3a7435a2;
+}
+.navitems
+{
+  font-size: 20px;
+  color:aqua;
+}
+.navitems:hover
+{
+  color:rgb(0, 168, 168);
+}
