@@ -1,9 +1,13 @@
-
+::-webkit-scrollbar
+{
+  width: 0;
+  height: 0;
+}
 
 body,html
 {
   background-color: #222222;
-  overflow: hidden;
+  
   color:aqua;
 }
 #planet
@@ -24,7 +28,7 @@ header
   font-size: 20px;
   color:aqua;
 }
-.navitems:hover
+.navitems:hover,.navitems:focus
 {
   color:rgb(0, 168, 168);
 }
