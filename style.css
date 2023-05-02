@@ -53,3 +53,9 @@ header
   max-height: calc(100vh - 65px);
   overflow: auto;
 }
+.ListElement:hover
+{
+  background-color: rgba(0, 0, 0, 0.342);
+  transition: 500ms;
+  color: rgb(0, 255, 85);
+}

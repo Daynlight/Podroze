@@ -59,7 +59,7 @@ wyszukaj();
 
 function Lista()
 {
-	var ListaArrayToText = '<ol>';
+	var ListaArrayToText = '<ol >';
 	for(var i=0;i<Lokaizacje.length;i++)
 	{
 		ListaArrayToText += '<li class="ListElement">'+Lokaizacje[i].Name+'</li>';
