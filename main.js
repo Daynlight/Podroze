@@ -3,7 +3,6 @@ import * as THREE from 'three';
 import data from '/Data/Lokalizacja.json';
 var Lokaizacje = data["Lokalizacja"];
 
-
 var height = window.innerHeight;
 var width = window.innerWidth;
 
@@ -50,24 +49,39 @@ function wyszukaj()
 	if(oldLokalizacja.value != Lokalizacja.value)
 	{
 		oldLokalizacja.value = Lokalizacja.value;
-		Lista();
+		Lista(Lokalizacja.value);
 	};
 	setInterval(wyszukaj,1000)
 }
 
 wyszukaj();
 
-function Lista()
+function Lista(text)
 {
-	var ListaArrayToText = '<ol >';
+	var id = 1;
+	var ListaArrayToText = '<ol id="listaArray">';
 	for(var i=0;i<Lokaizacje.length;i++)
 	{
-		ListaArrayToText += '<li class="ListElement">'+Lokaizacje[i].Name+'</li>';
+		
+		if(String(Lokaizacje[i].Name).match(text))
+		{
+			ListaArrayToText += '<li class="ListElement" value="'+(id)+'">'+Lokaizacje[i].Name+'</li>';
+			id++;
+		}
 	}
 	ListaArrayToText += '</ol>';
-
+	
 	document.getElementById("lista").innerHTML = ListaArrayToText;
 
 
 }
 Lista();
+
+// function LokalizacjaFocus()
+// {
+// 	var ListaArray = document.querySelector("#listaArray").childNodes;
+	
+
+	
+// }
+// LokalizacjaFocus();
