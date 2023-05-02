@@ -21,6 +21,8 @@ const material = new THREE.MeshStandardMaterial( { map: UVTexture } );
 const palnet = new THREE.Mesh( geometry, material );
 scene.add( palnet );
 camera.position.z = 5;
+palnet.rotation.x = 0.1;
+palnet.rotation.y = 5;
 
 const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
