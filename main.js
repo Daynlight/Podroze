@@ -15,14 +15,15 @@ renderer.setSize( width,height );
 renderer.setClearColor( 0xffffff, 0);
 document.getElementById("PlacePlanet").appendChild( renderer.domElement );
 
+const UVTexture = new THREE.TextureLoader().load('/assets/Earth/Texture.png');
 const geometry = new THREE.SphereGeometry( 2, 40, 40 );
-const material = new THREE.MeshStandardMaterial( { color: 0x2be6f0 } );
+const material = new THREE.MeshStandardMaterial( { map: UVTexture } );
 const palnet = new THREE.Mesh( geometry, material );
 scene.add( palnet );
 camera.position.z = 5;
 
 const light = new THREE.PointLight( 0xffffff );
-light.position.set( 7, 5, 10 );
+light.position.set( 17, 15, 20 );
 scene.add( light );
 
 
