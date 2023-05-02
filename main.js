@@ -1,10 +1,11 @@
 import './style.css'
+import * as THREE from 'three';
+import data from '/Data/Lokalizacja.json';
+var Lokaizacje = data["Lokalizacja"];
+
 
 var height = window.innerHeight;
 var width = window.innerWidth;
-
-
-import * as THREE from 'three';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, width / height, 0.1, 1000 );
@@ -28,13 +29,45 @@ const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
 scene.add( light );
 
-
+var rool = true;
 function animate() {
 	requestAnimationFrame( animate );
-
-	palnet.rotation.y += 0.001;
+	if(rool)
+	{
+		palnet.rotation.y += 0.001;
+	}
 
 	renderer.render( scene, camera );
 }
 
 animate();
+
+var oldLokalizacja = {value: ''};
+function wyszukaj()
+{
+	
+	var Lokalizacja = document.querySelector("#Lokalizacja");
+	if(oldLokalizacja.value != Lokalizacja.value)
+	{
+		oldLokalizacja.value = Lokalizacja.value;
+		Lista();
+	};
+	setInterval(wyszukaj,1000)
+}
+
+wyszukaj();
+
+function Lista()
+{
+	var ListaArrayToText = '<ol>';
+	for(var i=0;i<Lokaizacje.length;i++)
+	{
+		ListaArrayToText += '<li class="ListElement">'+Lokaizacje[i].Name+'</li>';
+	}
+	ListaArrayToText += '</ol>';
+
+	document.getElementById("lista").innerHTML = ListaArrayToText;
+
+
+}
+Lista();
