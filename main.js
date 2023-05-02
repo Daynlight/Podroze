@@ -77,11 +77,3 @@ function Lista(text)
 }
 Lista();
 
-// function LokalizacjaFocus()
-// {
-// 	var ListaArray = document.querySelector("#listaArray").childNodes;
-	
-
-	
-// }
-// LokalizacjaFocus();
