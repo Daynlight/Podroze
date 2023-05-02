@@ -1,6 +1,6 @@
 import './style.css'
 
-var height = window.innerHeight/4*3;
+var height = window.innerHeight;
 var width = window.innerWidth;
 
 
@@ -13,18 +13,23 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.setPixelRatio);
 renderer.setSize( width,height );
 renderer.setClearColor( 0xffffff, 0);
-document.getElementById("planet").appendChild( renderer.domElement );
+document.getElementById("PlacePlanet").appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+const geometry = new THREE.SphereGeometry( 2, 40, 40 );
+const material = new THREE.MeshStandardMaterial( { color: 0x2be6f0 } );
+const palnet = new THREE.Mesh( geometry, material );
+scene.add( palnet );
 camera.position.z = 5;
+
+const light = new THREE.PointLight( 0xffffff );
+light.position.set( 7, 5, 10 );
+scene.add( light );
+
 
 function animate() {
 	requestAnimationFrame( animate );
 
-	cube.rotation.y += 0.01;
+	palnet.rotation.y += 0.001;
 
 	renderer.render( scene, camera );
 }
