@@ -99,8 +99,8 @@ async function animateZoom()
 }
 var etap = 1;
 var etapdistance = 1.5;
-var scaleSpeed = 0.01;
-var goToLocationSpeed = 0.01;
+var scaleSpeed = 0.005;
+var goToLocationSpeed = 0.005;
 var x;
 var y;
 var z;
