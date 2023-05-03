@@ -23,6 +23,11 @@ body,html
   position: relative;
   width: 100%;
   height: calc(100vh - 65px);
+  background-image: url(/assets/Space/Space.png);
+  background-size: 300%;
+  animation-name: PlanetBackgrouindAnimation;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
 }
 .space
 {
@@ -87,7 +92,39 @@ header
     background-size: 200%;
   }
 }
-
+@keyframes PlanetBackgrouindAnimation
+{
+  0%
+  {
+    background-position: 0% 0%;
+    background-size: 150%;
+  }
+  20%
+  {
+    background-position: 50% 40%;
+    background-size: 200%;
+  }
+  40%
+  {
+    background-position: 20% 60%;
+    background-size: 250%;
+  }
+  60%
+  {
+    background-position: 90% 90%;
+    background-size: 300%;
+  }
+  60%
+  {
+    background-position: 70% 30%;
+    background-size: 200%;
+  }
+  100%
+  {
+    background-position: 0% 0%;
+    background-size: 150%;
+  }
+}
 #PlacePlanet,.planetcontetn
 {
   position: absolute;

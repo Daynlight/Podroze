@@ -24,8 +24,8 @@ scene.add( palnet );
 camera.position.z = 5;
 palnet.rotation.x = 0.1;
 palnet.rotation.y = Math.PI/2*3;
-const BackUV = new THREE.TextureLoader().load('/assets/Space/Space.png');
-scene.background = BackUV;
+// const BackUV = new THREE.TextureLoader().load('/assets/Space/Space.png');
+// scene.background = BackUV;
 
 const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
