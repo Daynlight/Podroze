@@ -1,15 +1,22 @@
-
+::-webkit-scrollbar
+{
+  overflow: hidden;
+  width: 0;
+  height: 0;
+}
 
 body,html
 {
   background-color: #222222;
-  overflow: hidden; 
   height: 100%;
   width: 100%;
   margin: 0%;
   padding: 0%;
   color:aqua;
   scroll-behavior: smooth;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(100vh);
+  scroll-snap-type: y mandatory;
 }
 .planet
 {
@@ -19,6 +26,7 @@ body,html
 }
 .space
 {
+  scroll-snap-align: start;
   height: 65px;
 }
 header

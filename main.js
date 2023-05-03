@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three';
 import data from '/Data/Lokalizacja.json';
+
 var Lokaizacje = data["Lokalizacja"];
 
 var height = window.innerHeight;
