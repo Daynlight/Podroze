@@ -67,7 +67,7 @@ function animateZoom()
 {
 	requestAnimationFrame( animateZoom );
 	
-	if(palnet.scale.x <= etapdistance) etap = 2;
+	if(palnet.scale.x <= etapdistance && palnet.scale.y <= etapdistance && palnet.scale.z <= etapdistance) etap = 2;
 	if(etap == 1)
 	{
 		if(etapdistance<palnet.scale.x) palnet.scale.x -= scaleSpeed;
