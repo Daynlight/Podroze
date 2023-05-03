@@ -62,9 +62,9 @@ function wyszukaj()
 }
 
 wyszukaj();
-
 function animateZoom()
 {
+	
 	requestAnimationFrame( animateZoom );
 	
 	if(palnet.scale.x <= etapdistance && palnet.scale.y <= etapdistance && palnet.scale.z <= etapdistance) etap = 2;
