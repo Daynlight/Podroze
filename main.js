@@ -39,7 +39,7 @@ function animate() {
 		requestAnimationFrame( animate );
 		if(rool)
 		{
-			palnet.rotation.y += 0.01;
+			palnet.rotation.y += 0.001;
 			if(palnet.rotation.y>Math.PI/2*3+Math.PI*2) palnet.rotation.y=Math.PI/2*3;
 			console.log(palnet.rotation.y);
 		}
