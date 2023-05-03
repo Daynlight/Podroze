@@ -54,29 +54,42 @@ function wyszukaj()
 		oldLokalizacja.value = Lokalizacja.value;
 		Lista(Lokalizacja.value);
 	};
-	setInterval(wyszukaj,1000)
+	setInterval(wyszukaj,1000);
 }
 
 wyszukaj();
 
+function Zoom(id = 1)
+{
+	
+	var Select = document.querySelector("#ListElement"+id);
+	Select.addEventListener("click",()=>
+	{
+		console.log(Select.value);
+	})
+}
+
 function Lista(text)
 {
 	var id = 1;
-	var ListaArrayToText = '<ol id="listaArray">';
+	var ListaArrayToText = '<ul id="listaArray">';
 	for(var i=0;i<Lokaizacje.length;i++)
 	{
 		
 		if(String(Lokaizacje[i].Name).match(text))
 		{
-			ListaArrayToText += '<li class="ListElement" value="'+(id)+'">'+Lokaizacje[i].Name+'</li>';
+			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+Lokaizacje[i].id+'">'+Lokaizacje[i].Name+'</li>';
 			id++;
 		}
 	}
-	ListaArrayToText += '</ol>';
-	
+	ListaArrayToText += '</ul>';
 	document.getElementById("lista").innerHTML = ListaArrayToText;
-
-
+	for(var i = 1; i< document.querySelector("#listaArray").childElementCount+1;i++)
+	{
+		Zoom(i);
+	}
 }
 Lista();
+
+
 
