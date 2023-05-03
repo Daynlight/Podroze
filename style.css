@@ -134,6 +134,19 @@ header
   background-color: #00000046;
   font-size: 30px;
   color: white;
+  cursor: pointer;
+}
+.Login
+{
+  border-radius: 10px 0 0 0;
+}
+.Register
+{
+  border-radius: 0 10px 0 0;
+}
+.ChoseActive
+{
+  background-color: rgba(0, 183, 255, 0.555);
 }
 .Login:hover,.Register:hover
 {
@@ -142,5 +155,21 @@ header
 }
 .LoginForm
 {
+  background-color: #00000046;
   border: 1px solid black;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+}
+input
+{
+  width: 100%;
+  background-color: #00000046;
+  color: white;
+  text-align: center;
+  border-color: aqua;
+  margin-top: 10px;
+}
+input::placeholder
+{
+  color: rgba(255, 255, 255, 0.63);
 }

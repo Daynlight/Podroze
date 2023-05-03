@@ -22,16 +22,27 @@
 
       <div class="WelcomeMessage d-flex justify-content-center">
 
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. </br>
-          Ipsum itaque nisi maiores earum repudiandae minus aliquam cumque.</br>
-          Dolorum, totam itaque.
+          Witaj podróżniku!!<br>
+          Czekamy na twoje pieniądze
+
 
       </div>
-      <div class="LoginChose row col-12 justify-content-center">
-       <div class="Login col-4 d-flex justify-content-center">Login</div>
-       <div class="Register col-4 d-flex justify-content-center">Register</div>
-       <div id="LoginForm" class="LoginForm col-8 justify-content-center"></div>
+      <div id="LoginChose" class="LoginChose row col-12 justify-content-center">
+       <div id="Login" onclick="LoginFormChange(true)" class="Login col-2 d-flex justify-content-center">Login</div>
+       <div id="Register" onclick="LoginFormChange(false)" class="Register col-2 d-flex justify-content-center ChoseActive">Register</div>
       </div>
+     <div class="col-12 row justify-content-center">
+      <div id="LoginForm" class="LoginForm col-4 justify-content-center">
+        <form>
+          <input type="text" name="Login" id="Login" placeholder="Username" class="form">
+          <input type="email" name="Email" id="Email" placeholder="Email" class="form">
+          <input type="number" name="Phone" id="Phone" placeholder="Phone Nunber" class="form">
+          <input type="password" name="Password1" id="Password1" placeholder="Password" class="form">
+          <input type="password" name="Password2" id="Password2" placeholder="Repeat Password" class="form">
+          <input type="button" id="submit" value="Register" class="form">
+        </form>
+      </div>
+     </div>
 
     </div>
     <div class="space" id="planet"></div>
@@ -49,6 +60,7 @@
 
 
     <script type="module" src="/main.js"></script>
+    <script src="/Login.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
