@@ -23,7 +23,7 @@ const palnet = new THREE.Mesh( geometry, material );
 scene.add( palnet );
 camera.position.z = 5;
 palnet.rotation.x = 0.1;
-palnet.rotation.y = 5;
+palnet.rotation.y = Math.PI/2*3;
 const BackUV = new THREE.TextureLoader().load('/assets/Space/Space.png');
 scene.background = BackUV;
 
@@ -39,7 +39,9 @@ function animate() {
 		requestAnimationFrame( animate );
 		if(rool)
 		{
-			palnet.rotation.y += 0.001;
+			palnet.rotation.y += 0.01;
+			if(palnet.rotation.y>Math.PI/2*3+Math.PI*2) palnet.rotation.y=Math.PI/2*3;
+			console.log(palnet.rotation.y);
 		}
 
 		renderer.render( scene, camera );
