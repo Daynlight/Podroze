@@ -62,7 +62,7 @@ function wyszukaj()
 }
 
 wyszukaj();
-function animateZoom()
+async function animateZoom()
 {
 	
 	requestAnimationFrame( animateZoom );
