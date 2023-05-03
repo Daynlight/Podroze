@@ -31,15 +31,19 @@ const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
 scene.add( light );
 
+var rotate = true;
 var rool = true;
 function animate() {
-	requestAnimationFrame( animate );
-	if(rool)
+	if(rotate)
 	{
-		palnet.rotation.y += 0.001;
-	}
+		requestAnimationFrame( animate );
+		if(rool)
+		{
+			palnet.rotation.y += 0.001;
+		}
 
-	renderer.render( scene, camera );
+		renderer.render( scene, camera );
+	}
 }
 
 animate();
@@ -59,13 +63,70 @@ function wyszukaj()
 
 wyszukaj();
 
+function animateZoom()
+{
+	requestAnimationFrame( animateZoom );
+	
+	if(palnet.scale.x <= etapdistance) etap = 2;
+	if(etap == 1)
+	{
+		if(etapdistance<palnet.scale.x) palnet.scale.x -= scaleSpeed;
+		if(etapdistance<palnet.scale.y) palnet.scale.y -= scaleSpeed;
+		if(etapdistance<palnet.scale.z) palnet.scale.z -= scaleSpeed;
+	}
+	if(etap == 2)
+	{
+		if(s>palnet.scale.x) palnet.scale.x += scaleSpeed;
+		if(s>palnet.scale.y) palnet.scale.y += scaleSpeed;
+		if(s>palnet.scale.z) palnet.scale.z += scaleSpeed;
+		
+		if(s<palnet.scale.x) palnet.scale.x -= scaleSpeed;
+		if(s<palnet.scale.y) palnet.scale.y -= scaleSpeed;
+		if(s<palnet.scale.z) palnet.scale.z -= scaleSpeed;
+
+		if(x>palnet.rotation.x)palnet.rotation.x += goToLocationSpeed;
+		if(x<palnet.rotation.x) palnet.rotation.x -= goToLocationSpeed;
+
+		if(y>palnet.rotation.y) palnet.rotation.y += goToLocationSpeed;
+		if(y<palnet.rotation.y) palnet.rotation.y -= goToLocationSpeed;
+
+		if(z>palnet.rotation.z) palnet.rotation.z += goToLocationSpeed;
+		if(z<palnet.rotation.z) palnet.rotation.z -= goToLocationSpeed;
+	}
+
+	renderer.render( scene, camera );
+}
+var etap = 1;
+var etapdistance = 1.5;
+var scaleSpeed = 0.01;
+var goToLocationSpeed = 0.01;
+var x;
+var y;
+var z;
+var s;
 function Zoom(id = 1)
 {
 	
 	var Select = document.querySelector("#ListElement"+id);
 	Select.addEventListener("click",()=>
 	{
-		console.log(Select.value);
+		for(var i = 0;i<Lokaizacje.length;i++)
+		{
+			if(Lokaizacje[i].id==Select.value)
+			{
+				x = Lokaizacje[i].x;
+				y = Lokaizacje[i].y;
+				z = Lokaizacje[i].z;
+				s = Lokaizacje[i].s;
+				etap = 1;
+				rool = false;
+				rotate = false;
+				animateZoom()
+
+			}
+
+		}
+
 	})
 }
 
