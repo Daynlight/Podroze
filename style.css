@@ -45,7 +45,11 @@ header
   height: calc(100vh - 65px);
   color:black;
   font-size: 20px;
-  background-color: #00ffea;
+  background-image: url(assets/Main/Main.png);
+  background-repeat: no-repeat;
+  background-position: 0;
+  background-size: cover;
+
 }
 #PlacePlanet,.planetcontetn
 {
@@ -70,4 +74,15 @@ header
 #Lokalizacja
 {
   font-size: 20px;
+}
+.WelcomeMessage
+{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  padding-top: 50px;
+  font-size: 40px;
+  text-align: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(red,blue);
 }
