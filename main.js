@@ -36,10 +36,15 @@ const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
 scene.add( light );
 
-function PlanetDefaultAnimation() {
+PlanetDefaultAnimation();
+SearchLocation();
+GenerateLocationsList();
+
+
+async function PlanetDefaultAnimation() {
 	if(RotatePlanet)
 	{
-		requestAnimationFrame( animate );
+		requestAnimationFrame( PlanetDefaultAnimation );
 		if(RollPlanet)
 		{
 			planet.rotation.y += 0.001;
@@ -49,6 +54,8 @@ function PlanetDefaultAnimation() {
 		renderer.render( scene, camera );
 	}
 }
+
+
 function SearchLocation()
 {
 	
@@ -79,11 +86,12 @@ function GenerateLocationsList(text)
 		AddOnClickFunctionForListElements(i);
 	}
 }
+
 async function PlanetGoToAnimation()
 {
-	requestAnimationFrame( AnimatePlanetZoom );
+	requestAnimationFrame( PlanetGoToAnimation );
 	
-	if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) etap = 2;
+	if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
 	if(AnimationStage == 1)
 	{
 		if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
@@ -114,7 +122,7 @@ async function PlanetGoToAnimation()
 function AddOnClickFunctionForListElements(id = 1)
 {
 	var ListElement = document.querySelector("#ListElement"+id);
-	Select.addEventListener("click",()=>
+	ListElement.addEventListener("click",()=>
 	{
 		for(var i = 0;i<LocationsArray.length;i++)
 		{
@@ -133,9 +141,7 @@ function AddOnClickFunctionForListElements(id = 1)
 	})
 }
 
-PlanetDefaultAnimation();
-SearchLocation();
-GenerateLocationsList();
+
 
 
 
