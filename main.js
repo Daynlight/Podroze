@@ -26,16 +26,14 @@ renderer.setSize( Width,Height );
 renderer.setClearColor( 0xffffff, 0);
 document.getElementById("PlacePlanet").appendChild( renderer.domElement );
 
-const UVTexture = new THREE.TextureLoader().load('/assets/Earth/Texture.png');
+const UVPlanetTexture = new THREE.TextureLoader().load('/assets/Earth/Texture.png');
 const geometry = new THREE.SphereGeometry( 2, 40, 40 );
-const material = new THREE.MeshStandardMaterial( { map: UVTexture } );
+const material = new THREE.MeshStandardMaterial( { map: UVPlanetTexture } );
 const planet = new THREE.Mesh( geometry, material );
 scene.add( planet );
 camera.position.z = 5;
 planet.rotation.x = 0.1;
 planet.rotation.y = Math.PI/2*3;
-// const BackUV = new THREE.TextureLoader().load('/assets/Space/Space.png');
-// scene.background = BackUV;
 
 const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
