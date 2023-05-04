@@ -118,6 +118,7 @@ function PlanetGoToAnimation()
 
 			if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
 			if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
+
 		}
 		if((PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed)&&(PlanetXTarget-planet.rotation.x<AnimationMoveSpeed) && (PlanetYTarget-planet.rotation.y<AnimationMoveSpeed) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed)) 
 		AnimationStage = 3;
