@@ -4,9 +4,9 @@ function ChangeBetwenLoginOrRegister(ModeLogin = false)
 	var LoginForm = 
 	`
 	<form class="FormContainer">
-	<input type="text" style="height: calc((100% - 20px - 40px)/6);" name="Login" id="Login" placeholder="Username" class="LoginRegisterInputForm">
-	<input type="password" style="height: calc((100% - 20px - 40px)/6);" name="Password1" id="Password1" placeholder="Password" class="LoginRegisterInputForm">
-	<input type="button" style="height: calc((100% - 20px - 40px)/6);" id="submit" value="Login" class="LoginRegisterInputForm">
+	<input type="text" style="height: calc((100% - 20px - 40px)/3);" name="Login" id="Login" placeholder="Username" class="LoginRegisterInputForm">
+	<input type="password" style="height: calc((100% - 20px - 40px)/3);" name="Password1" id="Password1" placeholder="Password" class="LoginRegisterInputForm">
+	<input type="button" style="height: calc((100% - 20px - 40px)/3);" id="submit" value="Login" class="LoginRegisterInputForm">
   	</form>
 	`;
 	
