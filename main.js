@@ -2,20 +2,20 @@ import './style.css'
 import * as THREE from 'three';
 import DataLokations from '/Data/Lokalizacja.json';
 
-var LcationsArray = DataLokations["Lokalizacja"];
+var LocationsArray = DataLokations["Lokalizacja"];
 var Height = window.innerHeight;
 var Width = window.innerWidth;
-var rotate = true;
-var rool = true;
-var oldLokalizacja = {value: ''};
-var etap = 1;
-var etapdistance = 1.5;
-var scaleSpeed = 0.005;
-var goToLocationSpeed = 0.005;
-var x;
-var y;
-var z;
-var s;
+var RotatePlanet = true;
+var RollPlanet = true;
+var OldLocationsArray = {value: ''};
+var AnimationStage = 1;
+var AnimationZoomOut = 1.5;
+var AnimationScaleSpeed = 0.005;
+var AnimationMoveSpeed = 0.005;
+var PlanetXTarget;
+var PlanetYTarget;
+var PlanetZTarget;
+var PlanetScaleTarget;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, Width / Height, 0.001, 1000 );
@@ -42,10 +42,10 @@ light.position.set( 17, 15, 20 );
 scene.add( light );
 
 function animate() {
-	if(rotate)
+	if(RotatePlanet)
 	{
 		requestAnimationFrame( animate );
-		if(rool)
+		if(RollPlanet)
 		{
 			planet.rotation.y += 0.001;
 			if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
@@ -62,9 +62,9 @@ function wyszukaj()
 {
 	
 	var Lokalizacja = document.querySelector("#Lokalizacja");
-	if(oldLokalizacja.value != Lokalizacja.value)
+	if(OldLocationsArray.value != Lokalizacja.value)
 	{
-		oldLokalizacja.value = Lokalizacja.value;
+		OldLocationsArray.value = Lokalizacja.value;
 		Lista(Lokalizacja.value);
 	};
 	setInterval(wyszukaj,1000);
@@ -76,31 +76,31 @@ async function animateZoom()
 	
 	requestAnimationFrame( animateZoom );
 	
-	if(planet.scale.x <= etapdistance && planet.scale.y <= etapdistance && planet.scale.z <= etapdistance) etap = 2;
-	if(etap == 1)
+	if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) etap = 2;
+	if(AnimationStage == 1)
 	{
-		if(etapdistance<planet.scale.x) planet.scale.x -= scaleSpeed;
-		if(etapdistance<planet.scale.y) planet.scale.y -= scaleSpeed;
-		if(etapdistance<planet.scale.z) planet.scale.z -= scaleSpeed;
+		if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+		if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+		if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
 	}
-	if(etap == 2)
+	if(AnimationStage == 2)
 	{
-		if(s>planet.scale.x) planet.scale.x += scaleSpeed;
-		if(s>planet.scale.y) planet.scale.y += scaleSpeed;
-		if(s>planet.scale.z) planet.scale.z += scaleSpeed;
+		if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
+		if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
+		if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
 		
-		if(s<planet.scale.x) planet.scale.x -= scaleSpeed;
-		if(s<planet.scale.y) planet.scale.y -= scaleSpeed;
-		if(s<planet.scale.z) planet.scale.z -= scaleSpeed;
+		if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+		if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+		if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
 
-		if(x>planet.rotation.x)planet.rotation.x += goToLocationSpeed;
-		if(x<planet.rotation.x) planet.rotation.x -= goToLocationSpeed;
+		if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
+		if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
 
-		if(y>planet.rotation.y) planet.rotation.y += goToLocationSpeed;
-		if(y<planet.rotation.y) planet.rotation.y -= goToLocationSpeed;
+		if(PlanetYTarget>planet.rotation.y) planet.rotation.y += AnimationMoveSpeed;
+		if(PlanetYTarget<planet.rotation.y) planet.rotation.y -= AnimationMoveSpeed;
 
-		if(z>planet.rotation.z) planet.rotation.z += goToLocationSpeed;
-		if(z<planet.rotation.z) planet.rotation.z -= goToLocationSpeed;
+		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
+		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
 	}
 
 	renderer.render( scene, camera );
@@ -112,17 +112,17 @@ function Zoom(id = 1)
 	var Select = document.querySelector("#ListElement"+id);
 	Select.addEventListener("click",()=>
 	{
-		for(var i = 0;i<LcationsArray.length;i++)
+		for(var i = 0;i<LocationsArray.length;i++)
 		{
-			if(LcationsArray[i].id==Select.value)
+			if(LocationsArray[i].id==Select.value)
 			{
-				x = LcationsArray[i].x;
-				y = LcationsArray[i].y;
-				z = LcationsArray[i].z;
-				s = LcationsArray[i].s;
-				etap = 1;
-				rool = false;
-				rotate = false;
+				PlanetXTarget = LocationsArray[i].x;
+				PlanetYTarget = LocationsArray[i].y;
+				PlanetZTarget = LocationsArray[i].z;
+				PlanetScaleTarget = LocationsArray[i].s;
+				AnimationStage = 1;
+				RollPlanet = false;
+				RotatePlanet = false;
 				animateZoom()
 
 			}
@@ -136,12 +136,12 @@ function Lista(text)
 {
 	var id = 1;
 	var ListaArrayToText = '<ul id="listaArray">';
-	for(var i=0;i<LcationsArray.length;i++)
+	for(var i=0;i<LocationsArray.length;i++)
 	{
 		
-		if(String(LcationsArray[i].Name).match(text))
+		if(String(LocationsArray[i].Name).match(text))
 		{
-			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+LcationsArray[i].id+'">'+LcationsArray[i].Name+'</li>';
+			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
 			id++;
 		}
 	}
