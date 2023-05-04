@@ -39,7 +39,7 @@ const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
 scene.add( light );
 
-function animate() {
+function PlanetDefaultAnimation() {
 	if(RotatePlanet)
 	{
 		requestAnimationFrame( animate );
@@ -53,26 +53,49 @@ function animate() {
 	}
 }
 
-animate();
+PlanetDefaultAnimation();
 
 
-function wyszukaj()
+function SearchLocation()
 {
 	
 	var Lokalizacja = document.querySelector("#Lokalizacja");
 	if(OldLocationsArray.value != Lokalizacja.value)
 	{
 		OldLocationsArray.value = Lokalizacja.value;
-		Lista(Lokalizacja.value);
+		GenerateLocationsList(Lokalizacja.value);
 	};
-	setInterval(wyszukaj,1000);
+	setInterval(SearchLocation,1000);
 }
 
-wyszukaj();
-async function animateZoom()
+SearchLocation();
+
+function GenerateLocationsList(text)
+{
+	var id = 1;
+	var ListaArrayToText = '<ul id="listaArray">';
+	for(var i=0;i<LocationsArray.length;i++)
+	{
+		
+		if(String(LocationsArray[i].Name).match(text))
+		{
+			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
+			id++;
+		}
+	}
+	ListaArrayToText += '</ul>';
+	document.getElementById("lista").innerHTML = ListaArrayToText;
+	for(var i = 1; i< document.querySelector("#listaArray").childElementCount+1;i++)
+	{
+		AnimatePlanetGoToLocation(i);
+	}
+}
+GenerateLocationsList();
+
+async function AnimatePlanetZoom()
 {
 	
-	requestAnimationFrame( animateZoom );
+	requestAnimationFrame( AnimatePlanetZoom );
 	
 	if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) etap = 2;
 	if(AnimationStage == 1)
@@ -104,7 +127,7 @@ async function animateZoom()
 	renderer.render( scene, camera );
 }
 
-function Zoom(id = 1)
+function AnimatePlanetGoToLocation(id = 1)
 {
 	
 	var Select = document.querySelector("#ListElement"+id);
@@ -121,7 +144,7 @@ function Zoom(id = 1)
 				AnimationStage = 1;
 				RollPlanet = false;
 				RotatePlanet = false;
-				animateZoom()
+				AnimatePlanetZoom()
 
 			}
 
@@ -130,27 +153,7 @@ function Zoom(id = 1)
 	})
 }
 
-function Lista(text)
-{
-	var id = 1;
-	var ListaArrayToText = '<ul id="listaArray">';
-	for(var i=0;i<LocationsArray.length;i++)
-	{
-		
-		if(String(LocationsArray[i].Name).match(text))
-		{
-			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
-			id++;
-		}
-	}
-	ListaArrayToText += '</ul>';
-	document.getElementById("lista").innerHTML = ListaArrayToText;
-	for(var i = 1; i< document.querySelector("#listaArray").childElementCount+1;i++)
-	{
-		Zoom(i);
-	}
-}
-Lista();
+
 
 
 
