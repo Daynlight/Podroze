@@ -1,8 +1,8 @@
 import './style.css'
 import * as THREE from 'three';
-import data from '/Data/Lokalizacja.json';
+import DataLokations from '/Data/Lokalizacja.json';
 
-var Lokaizacje = data["Lokalizacja"];
+var LcationsArray = DataLokations["Lokalizacja"];
 
 var height = window.innerHeight;
 var width = window.innerWidth;
@@ -113,14 +113,14 @@ function Zoom(id = 1)
 	var Select = document.querySelector("#ListElement"+id);
 	Select.addEventListener("click",()=>
 	{
-		for(var i = 0;i<Lokaizacje.length;i++)
+		for(var i = 0;i<LcationsArray.length;i++)
 		{
-			if(Lokaizacje[i].id==Select.value)
+			if(LcationsArray[i].id==Select.value)
 			{
-				x = Lokaizacje[i].x;
-				y = Lokaizacje[i].y;
-				z = Lokaizacje[i].z;
-				s = Lokaizacje[i].s;
+				x = LcationsArray[i].x;
+				y = LcationsArray[i].y;
+				z = LcationsArray[i].z;
+				s = LcationsArray[i].s;
 				etap = 1;
 				rool = false;
 				rotate = false;
@@ -137,12 +137,12 @@ function Lista(text)
 {
 	var id = 1;
 	var ListaArrayToText = '<ul id="listaArray">';
-	for(var i=0;i<Lokaizacje.length;i++)
+	for(var i=0;i<LcationsArray.length;i++)
 	{
 		
-		if(String(Lokaizacje[i].Name).match(text))
+		if(String(LcationsArray[i].Name).match(text))
 		{
-			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+Lokaizacje[i].id+'">'+Lokaizacje[i].Name+'</li>';
+			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+LcationsArray[i].id+'">'+LcationsArray[i].Name+'</li>';
 			id++;
 		}
 	}
