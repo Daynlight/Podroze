@@ -59,11 +59,11 @@ PlanetDefaultAnimation();
 function SearchLocation()
 {
 	
-	var Lokalizacja = document.querySelector("#Lokalizacja");
-	if(OldLocationsArray.value != Lokalizacja.value)
+	var GetLokalizationDataFromForm = document.querySelector("#Lokalizacja");
+	if(OldLocationsArray.value != GetLokalizationDataFromForm.value)
 	{
-		OldLocationsArray.value = Lokalizacja.value;
-		GenerateLocationsList(Lokalizacja.value);
+		OldLocationsArray.value = GetLokalizationDataFromForm.value;
+		GenerateLocationsList(GetLokalizationDataFromForm.value);
 	};
 	setInterval(SearchLocation,1000);
 }
@@ -73,26 +73,25 @@ SearchLocation();
 function GenerateLocationsList(text)
 {
 	var id = 1;
-	var ListaArrayToText = '<ul id="listaArray">';
+	var GeneratedList = '<ul id="listaArray">';
 	for(var i=0;i<LocationsArray.length;i++)
 	{
-		
 		if(String(LocationsArray[i].Name).match(text))
 		{
-			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
+			GeneratedList += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
 			id++;
 		}
 	}
-	ListaArrayToText += '</ul>';
-	document.getElementById("lista").innerHTML = ListaArrayToText;
+	GeneratedList += '</ul>';
+	document.getElementById("lista").innerHTML = GeneratedList;
 	for(var i = 1; i< document.querySelector("#listaArray").childElementCount+1;i++)
 	{
-		AnimatePlanetGoToLocation(i);
+		AddOnClickFunctionForListElements(i);
 	}
 }
 GenerateLocationsList();
 
-async function AnimatePlanetZoom()
+async function PlanetGoToAnimation()
 {
 	
 	requestAnimationFrame( AnimatePlanetZoom );
@@ -127,15 +126,15 @@ async function AnimatePlanetZoom()
 	renderer.render( scene, camera );
 }
 
-function AnimatePlanetGoToLocation(id = 1)
+function AddOnClickFunctionForListElements(id = 1)
 {
 	
-	var Select = document.querySelector("#ListElement"+id);
+	var ListElement = document.querySelector("#ListElement"+id);
 	Select.addEventListener("click",()=>
 	{
 		for(var i = 0;i<LocationsArray.length;i++)
 		{
-			if(LocationsArray[i].id==Select.value)
+			if(LocationsArray[i].id==ListElement.value)
 			{
 				PlanetXTarget = LocationsArray[i].x;
 				PlanetYTarget = LocationsArray[i].y;
@@ -144,7 +143,7 @@ function AnimatePlanetGoToLocation(id = 1)
 				AnimationStage = 1;
 				RollPlanet = false;
 				RotatePlanet = false;
-				AnimatePlanetZoom()
+				PlanetGoToAnimation()
 
 			}
 
