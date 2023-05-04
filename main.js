@@ -86,37 +86,43 @@ function GenerateLocationsList(text)
 	}
 }
 
-async function PlanetGoToAnimation()
+function PlanetGoToAnimation()
 {
-	requestAnimationFrame( PlanetGoToAnimation );
-	
-	if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
-	if(AnimationStage == 1)
+	if(AnimationStage!=3)
 	{
-		if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
-		if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
-		if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
-	}
-	if(AnimationStage == 2)
-	{
-		if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
-		if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
-		if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
 		
-		if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
-		if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
-		if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+		requestAnimationFrame( PlanetGoToAnimation );
+		
+		if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
+		if(AnimationStage == 1)
+		{
+			if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+			if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+			if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+		}
+		if(AnimationStage == 2)
+		{
+			if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
+			if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
+			if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
+			
+			if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+			if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+			if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
 
-		if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
-		if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
+			if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
+			if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
 
-		if(PlanetYTarget>planet.rotation.y) planet.rotation.y += AnimationMoveSpeed;
-		if(PlanetYTarget<planet.rotation.y) planet.rotation.y -= AnimationMoveSpeed;
+			if(PlanetYTarget>planet.rotation.y) planet.rotation.y += AnimationMoveSpeed;
+			if(PlanetYTarget<planet.rotation.y) planet.rotation.y -= AnimationMoveSpeed;
 
-		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
-		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
+			if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
+			if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
+		}
+		if((PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed)&&(PlanetXTarget-planet.rotation.x<AnimationMoveSpeed) && (PlanetYTarget-planet.rotation.y<AnimationMoveSpeed) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed)) 
+		AnimationStage = 3;
+		renderer.render( scene, camera );
 	}
-	renderer.render( scene, camera );
 }
 function AddOnClickFunctionForListElements(id = 1)
 {
