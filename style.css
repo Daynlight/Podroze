@@ -39,11 +39,32 @@ header
   width: 100%;
 }
 
-.navitems
+.NavItem,.NavItemIcon
 {
   font-size: 20px;
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: 1s;
 }
-
+.NavItem:hover
+{
+  color: white;
+  filter: brightness(60%);
+  transition: 1s;
+}
+.NavItemIcon img
+{
+  filter: invert(1); 
+  height: 50px;
+  transition: 1s;
+  
+}
+.NavItemIcon:hover img
+{
+  filter: invert(1) brightness(60%);
+  transition: 1s;
+}
 .welcome
 {
   width: 100%;
@@ -52,9 +73,6 @@ header
   font-size: 20px;
   background-image: url(assets/Main/Main.png);
   background-repeat: no-repeat;
-  /* background-size: 300%; */
-  /* background-position: 0; */
-  /* background-size: cover; */
   animation-name: MainBackgrouindAnimation;
   animation-duration: 60s;
   animation-iteration-count: infinite;

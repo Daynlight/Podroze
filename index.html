@@ -2,18 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/Icon/Icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Podroże</title>
+    <title>Podróże</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   </head>
   <body>
     <header>
-      <nav class="nav navbar navbar-dark justify-content-center bg-black fixed-top">
-        <a class="navbar-brand navitems" href="#welcome">Witaj</a>
-        <a class="nav-link navitems" href="#planet">Wyszukaj podróż</a>
-        <a class="nav-link navitems" href="#">Konto</a>
+      <nav class="navbar bg-black justify-content-center fixed-top">
+        <a class="NavItemIcon" href="#welcome"><img src="assets/Icon/Icon.png" alt="Icon"></a>
+        <a class="NavItem" href="#planet">Wyszukaj podróż</a>
+        <a class="NavItem" href="#">Konto</a>
       </nav>
     </header>
     <div class="space" id="welcome"></div>
@@ -23,8 +24,6 @@
 
           Witaj podróżniku!!<br>
           Przeżyj z nami swoje nie zapomniane podróże
-
-
       </div>
       <div id="LoginChose" class="LoginChose row col-12 justify-content-center">
        <div id="Login" onclick="LoginFormChange(true)" class="Login col-2 d-flex justify-content-center">Login</div>
