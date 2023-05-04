@@ -3,9 +3,8 @@ import * as THREE from 'three';
 import DataLokations from '/Data/Lokalizacja.json';
 
 var LcationsArray = DataLokations["Lokalizacja"];
-
-var height = window.innerHeight;
-var width = window.innerWidth;
+var Height = window.innerHeight;
+var Width = window.innerWidth;
 var rotate = true;
 var rool = true;
 var oldLokalizacja = {value: ''};
@@ -19,11 +18,11 @@ var z;
 var s;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, width / height, 0.001, 1000 );
+const camera = new THREE.PerspectiveCamera( 75, Width / Height, 0.001, 1000 );
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.setPixelRatio);
-renderer.setSize( width,height );
+renderer.setSize( Width,Height );
 renderer.setClearColor( 0xffffff, 0);
 document.getElementById("PlacePlanet").appendChild( renderer.domElement );
 
