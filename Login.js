@@ -3,7 +3,7 @@ function ChangeBetwenLoginOrRegister(ModeLogin = false)
 {
 	var LoginForm = 
 	`
-	<form>
+	<form class="FormContainer">
 	<input type="text" style="height: calc((100% - 20px - 40px)/6);" name="Login" id="Login" placeholder="Username" class="LoginRegisterInputForm">
 	<input type="password" style="height: calc((100% - 20px - 40px)/6);" name="Password1" id="Password1" placeholder="Password" class="LoginRegisterInputForm">
 	<input type="button" style="height: calc((100% - 20px - 40px)/6);" id="submit" value="Login" class="LoginRegisterInputForm">
@@ -16,7 +16,7 @@ function ChangeBetwenLoginOrRegister(ModeLogin = false)
 	
 	var RegisterForm = 
 	`
-	<form>
+	<form class="FormContainer">
 	<input type="text" style="height: calc((100% - 20px - 40px)/6);" name="Login" id="Login" placeholder="Username" class="LoginRegisterInputForm">
 	<input type="email" style="height: calc((100% - 20px - 40px)/6);" name="Email" id="Email" placeholder="Email" class="LoginRegisterInputForm">
 	<input type="number" style="height: calc((100% - 20px - 40px)/6);" name="Phone" id="Phone" placeholder="Phone Nunber" class="LoginRegisterInputForm">
