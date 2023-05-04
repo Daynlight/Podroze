@@ -2,58 +2,57 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/Icon/Icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Podroże</title>
+    <title>Podróże</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   </head>
   <body>
     <header>
-      <nav class="nav navbar navbar-dark justify-content-center bg-black fixed-top">
-        <a class="navbar-brand navitems" href="#welcome">Witaj</a>
-        <a class="nav-link navitems" href="#planet">Wyszukaj podróż</a>
-        <a class="nav-link navitems" href="#">Konto</a>
+      <nav class="navbar bg-black justify-content-center fixed-top">
+        <a class="NavItemIcon" href="#Welcome"><img src="assets/Icon/Icon.png" alt="WebIcon"></a>
+        <a class="NavItem" href="#ChoseLocationFromPlanet">Wyszukaj podróż</a>
+        <a class="NavItem" href="#">Konto</a>
       </nav>
     </header>
-    <div class="space" id="welcome"></div>
-    <div class="welcome">
-
+    <div class="ElementSpace" id="Welcome"></div>
+    <div class="Welcome">
       <div class="WelcomeMessage d-flex justify-content-center">
-
           Witaj podróżniku!!<br>
           Przeżyj z nami swoje nie zapomniane podróże
-
-
       </div>
-      <div id="LoginChose" class="LoginChose row col-12 justify-content-center">
-       <div id="Login" onclick="LoginFormChange(true)" class="Login col-2 d-flex justify-content-center">Login</div>
-       <div id="Register" onclick="LoginFormChange(false)" class="Register col-2 d-flex justify-content-center ChoseActive">Register</div>
-      </div>
-     <div class="col-12 row justify-content-center">
-      <div id="LoginForm" class="LoginForm col-4 justify-content-center">
-        <form>
-          <input type="text" name="Login" id="Login" placeholder="Username" class="form">
-          <input type="email" name="Email" id="Email" placeholder="Email" class="form">
-          <input type="number" name="Phone" id="Phone" placeholder="Phone Nunber" class="form">
-          <input type="password" name="Password1" id="Password1" placeholder="Password" class="form">
-          <input type="password" name="Password2" id="Password2" placeholder="Repeat Password" class="form">
-          <input type="button" id="submit" value="Register" class="form">
-        </form>
-      </div>
-     </div>
-
-    </div>
-    <div class="space" id="planet"></div>
-    <div class="planet">
-      
-      <div id="PlacePlanet"></div>
-      <div class="d-flex justify-content-end planetcontetn">
-        <div>
-          <input type="text" id="Lokalizacja" placeholder="Podaj Lokalizacje Wakacji">
+      <div class="d-flex justify-content-center">
+        <div class="LoginFormSize">
+          <div id="LoginOrRegister" class="LoginOrRegister">
+            <div id="Login" onclick="ChangeBetwenLoginOrRegister(true)" class="Login d-flex justify-content-center">Login</div>
+            <div id="Register" onclick="ChangeBetwenLoginOrRegister(false)" class="Register d-flex justify-content-center LoginOrRegisterActive">Register</div>
+          </div>
+        
+          <div id="LoginForm" class="LoginForm d-flex justify-content-center">
+            <form class="FormContainer">
+              <input type="text" name="Login" style="height: calc((100% - 20px - 40px)/6);" id="Login" placeholder="Username" class="LoginRegisterInputForm">
+              <input type="email" name="Email" style="height: calc((100% - 20px - 40px)/6);" id="Email" placeholder="Email" class="LoginRegisterInputForm">
+              <input type="number" name="Phone" style="height: calc((100% - 20px - 40px)/6);" id="Phone" placeholder="Phone Nunber" class="LoginRegisterInputForm">
+              <input type="password" name="Password1" style="height: calc((100% - 20px - 40px)/6);" id="Password1" placeholder="Password" class="LoginRegisterInputForm">
+              <input type="password" name="Password2" style="height: calc((100% - 20px - 40px)/6);" id="Password2" placeholder="Repeat Password" class="LoginRegisterInputForm">
+              <input type="button" id="submit" style="height: calc((100% - 20px - 40px)/6);" value="Register" class="LoginRegisterInputForm">
+            </form>
+          </div>
         </div>
       </div>
-      <div id="lista" class="d-flex lista justify-content-start planetcontetn">
+     
+
+    </div>
+    <div class="ElementSpace" id="ChoseLocationFromPlanet"></div>
+    <div class="ChoseLocationFromPlanet">
+      
+      <div id="PlacePlanet"></div>
+      <div class="d-flex justify-content-start PlanetInput">
+        <input type="text" id="SchearchPlace" placeholder="Podaj Cel Podróży">
+      </div>
+      <div id="Lista" class="d-flex Lista justify-content-start PlanetList">
       </div>
     </div>
 

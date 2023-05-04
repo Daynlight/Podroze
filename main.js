@@ -1,159 +1,153 @@
-import './style.css'
 import * as THREE from 'three';
-import data from '/Data/Lokalizacja.json';
+import DataLokations from '/Data/Lokalizacja.json';
 
-var Lokaizacje = data["Lokalizacja"];
-
-var height = window.innerHeight;
-var width = window.innerWidth;
-var rotate = true;
-var rool = true;
-var oldLokalizacja = {value: ''};
-var etap = 1;
-var etapdistance = 1.5;
-var scaleSpeed = 0.005;
-var goToLocationSpeed = 0.005;
-var x;
-var y;
-var z;
-var s;
+var LocationsArray = DataLokations["Lokalizacja"];
+var Height = window.innerHeight;
+var Width = window.innerWidth;
+var RotatePlanet = true;
+var RollPlanet = true;
+var OldLocationsArray = {value: ''};
+var AnimationStage = 1;
+var AnimationZoomOut = 1.5;
+var AnimationScaleSpeed = 0.005;
+var AnimationMoveSpeed = 0.005;
+var PlanetXTarget;
+var PlanetYTarget;
+var PlanetZTarget;
+var PlanetScaleTarget;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, width / height, 0.001, 1000 );
-
+const camera = new THREE.PerspectiveCamera( 75, Width / Height, 0.001, 1000 );
 const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.setPixelRatio);
-renderer.setSize( width,height );
+renderer.setSize( Width,Height );
 renderer.setClearColor( 0xffffff, 0);
 document.getElementById("PlacePlanet").appendChild( renderer.domElement );
-
-const UVTexture = new THREE.TextureLoader().load('/assets/Earth/Texture.png');
+const UVPlanetTexture = new THREE.TextureLoader().load('/assets/Earth/Texture.png');
 const geometry = new THREE.SphereGeometry( 2, 40, 40 );
-const material = new THREE.MeshStandardMaterial( { map: UVTexture } );
-const palnet = new THREE.Mesh( geometry, material );
-scene.add( palnet );
+const material = new THREE.MeshStandardMaterial( { map: UVPlanetTexture } );
+const planet = new THREE.Mesh( geometry, material );
+scene.add( planet );
 camera.position.z = 5;
-palnet.rotation.x = 0.1;
-palnet.rotation.y = Math.PI/2*3;
-// const BackUV = new THREE.TextureLoader().load('/assets/Space/Space.png');
-// scene.background = BackUV;
-
+planet.rotation.x = 0.1;
+planet.rotation.y = Math.PI/2*3;
 const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
 scene.add( light );
 
-function animate() {
-	if(rotate)
+PlanetDefaultAnimation();
+SearchLocation();
+GenerateLocationsList();
+
+
+async function PlanetDefaultAnimation() {
+	if(RotatePlanet)
 	{
-		requestAnimationFrame( animate );
-		if(rool)
+		requestAnimationFrame( PlanetDefaultAnimation );
+		if(RollPlanet)
 		{
-			palnet.rotation.y += 0.001;
-			if(palnet.rotation.y>Math.PI/2*3+Math.PI*2) palnet.rotation.y=Math.PI/2*3;
+			planet.rotation.y += 0.001;
+			if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
 		}
 
 		renderer.render( scene, camera );
 	}
 }
 
-animate();
 
-
-function wyszukaj()
+function SearchLocation()
 {
 	
-	var Lokalizacja = document.querySelector("#Lokalizacja");
-	if(oldLokalizacja.value != Lokalizacja.value)
+	var GetLokalizationDataFromForm = document.querySelector("#SchearchPlace");
+	if(OldLocationsArray.value != GetLokalizationDataFromForm.value)
 	{
-		oldLokalizacja.value = Lokalizacja.value;
-		Lista(Lokalizacja.value);
+		OldLocationsArray.value = GetLokalizationDataFromForm.value;
+		GenerateLocationsList(GetLokalizationDataFromForm.value);
 	};
-	setInterval(wyszukaj,1000);
+	setInterval(SearchLocation,1000);
 }
-
-wyszukaj();
-async function animateZoom()
-{
-	
-	requestAnimationFrame( animateZoom );
-	
-	if(palnet.scale.x <= etapdistance && palnet.scale.y <= etapdistance && palnet.scale.z <= etapdistance) etap = 2;
-	if(etap == 1)
-	{
-		if(etapdistance<palnet.scale.x) palnet.scale.x -= scaleSpeed;
-		if(etapdistance<palnet.scale.y) palnet.scale.y -= scaleSpeed;
-		if(etapdistance<palnet.scale.z) palnet.scale.z -= scaleSpeed;
-	}
-	if(etap == 2)
-	{
-		if(s>palnet.scale.x) palnet.scale.x += scaleSpeed;
-		if(s>palnet.scale.y) palnet.scale.y += scaleSpeed;
-		if(s>palnet.scale.z) palnet.scale.z += scaleSpeed;
-		
-		if(s<palnet.scale.x) palnet.scale.x -= scaleSpeed;
-		if(s<palnet.scale.y) palnet.scale.y -= scaleSpeed;
-		if(s<palnet.scale.z) palnet.scale.z -= scaleSpeed;
-
-		if(x>palnet.rotation.x)palnet.rotation.x += goToLocationSpeed;
-		if(x<palnet.rotation.x) palnet.rotation.x -= goToLocationSpeed;
-
-		if(y>palnet.rotation.y) palnet.rotation.y += goToLocationSpeed;
-		if(y<palnet.rotation.y) palnet.rotation.y -= goToLocationSpeed;
-
-		if(z>palnet.rotation.z) palnet.rotation.z += goToLocationSpeed;
-		if(z<palnet.rotation.z) palnet.rotation.z -= goToLocationSpeed;
-	}
-
-	renderer.render( scene, camera );
-}
-
-function Zoom(id = 1)
-{
-	
-	var Select = document.querySelector("#ListElement"+id);
-	Select.addEventListener("click",()=>
-	{
-		for(var i = 0;i<Lokaizacje.length;i++)
-		{
-			if(Lokaizacje[i].id==Select.value)
-			{
-				x = Lokaizacje[i].x;
-				y = Lokaizacje[i].y;
-				z = Lokaizacje[i].z;
-				s = Lokaizacje[i].s;
-				etap = 1;
-				rool = false;
-				rotate = false;
-				animateZoom()
-
-			}
-
-		}
-
-	})
-}
-
-function Lista(text)
+function GenerateLocationsList(text)
 {
 	var id = 1;
-	var ListaArrayToText = '<ul id="listaArray">';
-	for(var i=0;i<Lokaizacje.length;i++)
+	var GeneratedList = '<ul id="listaArray">';
+	for(var i=0;i<LocationsArray.length;i++)
 	{
-		
-		if(String(Lokaizacje[i].Name).match(text))
+		if(String(LocationsArray[i].Name).match(text))
 		{
-			ListaArrayToText += '<li id="ListElement'+id+'" class="ListElement" value="'+Lokaizacje[i].id+'">'+Lokaizacje[i].Name+'</li>';
+			GeneratedList += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
 			id++;
 		}
 	}
-	ListaArrayToText += '</ul>';
-	document.getElementById("lista").innerHTML = ListaArrayToText;
+	GeneratedList += '</ul>';
+	document.getElementById("Lista").innerHTML = GeneratedList;
 	for(var i = 1; i< document.querySelector("#listaArray").childElementCount+1;i++)
 	{
-		Zoom(i);
+		AddOnClickFunctionForListElements(i);
 	}
 }
-Lista();
+
+function PlanetGoToAnimation()
+{
+	if(AnimationStage!=3)
+	{
+		
+		requestAnimationFrame( PlanetGoToAnimation );
+		
+		if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
+		if(AnimationStage == 1)
+		{
+			if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+			if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+			if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+		}
+		if(AnimationStage == 2)
+		{
+			if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
+			if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
+			if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
+			
+			if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+			if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+			if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+
+			if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
+			if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
+
+			if(PlanetYTarget>planet.rotation.y) planet.rotation.y += AnimationMoveSpeed;
+			if(PlanetYTarget<planet.rotation.y) planet.rotation.y -= AnimationMoveSpeed;
+
+			if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
+			if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
+			
+		}
+		if((PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed)&&(PlanetXTarget-planet.rotation.x<AnimationMoveSpeed) && (PlanetYTarget-planet.rotation.y<AnimationMoveSpeed) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed)) 
+		AnimationStage = 3;
+		renderer.render( scene, camera );
+	}
+}
+function AddOnClickFunctionForListElements(id = 1)
+{
+	var ListElement = document.querySelector("#ListElement"+id);
+	ListElement.addEventListener("click",()=>
+	{
+		for(var i = 0;i<LocationsArray.length;i++)
+		{
+			if(LocationsArray[i].id==ListElement.value)
+			{
+				PlanetXTarget = LocationsArray[i].x;
+				PlanetYTarget = LocationsArray[i].y;
+				PlanetZTarget = LocationsArray[i].z;
+				PlanetScaleTarget = LocationsArray[i].s;
+				AnimationStage = 1;
+				RollPlanet = false;
+				RotatePlanet = false;
+				PlanetGoToAnimation()
+			}
+		}
+	})
+}
+
+
 
 
 
