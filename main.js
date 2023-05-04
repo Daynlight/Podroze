@@ -58,7 +58,7 @@ async function PlanetDefaultAnimation() {
 function SearchLocation()
 {
 	
-	var GetLokalizationDataFromForm = document.querySelector("#Lokalizacja");
+	var GetLokalizationDataFromForm = document.querySelector("#SchearchPlace");
 	if(OldLocationsArray.value != GetLokalizationDataFromForm.value)
 	{
 		OldLocationsArray.value = GetLokalizationDataFromForm.value;
@@ -79,7 +79,7 @@ function GenerateLocationsList(text)
 		}
 	}
 	GeneratedList += '</ul>';
-	document.getElementById("lista").innerHTML = GeneratedList;
+	document.getElementById("Lista").innerHTML = GeneratedList;
 	for(var i = 1; i< document.querySelector("#listaArray").childElementCount+1;i++)
 	{
 		AddOnClickFunctionForListElements(i);
