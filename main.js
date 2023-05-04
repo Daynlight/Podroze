@@ -6,6 +6,17 @@ var Lokaizacje = data["Lokalizacja"];
 
 var height = window.innerHeight;
 var width = window.innerWidth;
+var rotate = true;
+var rool = true;
+var oldLokalizacja = {value: ''};
+var etap = 1;
+var etapdistance = 1.5;
+var scaleSpeed = 0.005;
+var goToLocationSpeed = 0.005;
+var x;
+var y;
+var z;
+var s;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, width / height, 0.001, 1000 );
@@ -31,8 +42,6 @@ const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
 scene.add( light );
 
-var rotate = true;
-var rool = true;
 function animate() {
 	if(rotate)
 	{
@@ -49,7 +58,7 @@ function animate() {
 
 animate();
 
-var oldLokalizacja = {value: ''};
+
 function wyszukaj()
 {
 	
@@ -97,14 +106,7 @@ async function animateZoom()
 
 	renderer.render( scene, camera );
 }
-var etap = 1;
-var etapdistance = 1.5;
-var scaleSpeed = 0.005;
-var goToLocationSpeed = 0.005;
-var x;
-var y;
-var z;
-var s;
+
 function Zoom(id = 1)
 {
 	
