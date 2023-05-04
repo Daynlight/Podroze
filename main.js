@@ -19,13 +19,11 @@ var PlanetScaleTarget;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, Width / Height, 0.001, 1000 );
-
 const renderer = new THREE.WebGLRenderer();
 renderer.setPixelRatio(window.setPixelRatio);
 renderer.setSize( Width,Height );
 renderer.setClearColor( 0xffffff, 0);
 document.getElementById("PlacePlanet").appendChild( renderer.domElement );
-
 const UVPlanetTexture = new THREE.TextureLoader().load('/assets/Earth/Texture.png');
 const geometry = new THREE.SphereGeometry( 2, 40, 40 );
 const material = new THREE.MeshStandardMaterial( { map: UVPlanetTexture } );
@@ -34,7 +32,6 @@ scene.add( planet );
 camera.position.z = 5;
 planet.rotation.x = 0.1;
 planet.rotation.y = Math.PI/2*3;
-
 const light = new THREE.PointLight( 0xffffff );
 light.position.set( 17, 15, 20 );
 scene.add( light );
@@ -52,10 +49,6 @@ function PlanetDefaultAnimation() {
 		renderer.render( scene, camera );
 	}
 }
-
-PlanetDefaultAnimation();
-
-
 function SearchLocation()
 {
 	
@@ -67,9 +60,6 @@ function SearchLocation()
 	};
 	setInterval(SearchLocation,1000);
 }
-
-SearchLocation();
-
 function GenerateLocationsList(text)
 {
 	var id = 1;
@@ -89,11 +79,8 @@ function GenerateLocationsList(text)
 		AddOnClickFunctionForListElements(i);
 	}
 }
-GenerateLocationsList();
-
 async function PlanetGoToAnimation()
 {
-	
 	requestAnimationFrame( AnimatePlanetZoom );
 	
 	if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) etap = 2;
@@ -122,13 +109,10 @@ async function PlanetGoToAnimation()
 		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
 		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
 	}
-
 	renderer.render( scene, camera );
 }
-
 function AddOnClickFunctionForListElements(id = 1)
 {
-	
 	var ListElement = document.querySelector("#ListElement"+id);
 	Select.addEventListener("click",()=>
 	{
@@ -144,15 +128,14 @@ function AddOnClickFunctionForListElements(id = 1)
 				RollPlanet = false;
 				RotatePlanet = false;
 				PlanetGoToAnimation()
-
 			}
-
 		}
-
 	})
 }
 
-
+PlanetDefaultAnimation();
+SearchLocation();
+GenerateLocationsList();
 
 
 
