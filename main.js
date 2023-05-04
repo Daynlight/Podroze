@@ -30,11 +30,11 @@ document.getElementById("PlacePlanet").appendChild( renderer.domElement );
 const UVTexture = new THREE.TextureLoader().load('/assets/Earth/Texture.png');
 const geometry = new THREE.SphereGeometry( 2, 40, 40 );
 const material = new THREE.MeshStandardMaterial( { map: UVTexture } );
-const palnet = new THREE.Mesh( geometry, material );
-scene.add( palnet );
+const planet = new THREE.Mesh( geometry, material );
+scene.add( planet );
 camera.position.z = 5;
-palnet.rotation.x = 0.1;
-palnet.rotation.y = Math.PI/2*3;
+planet.rotation.x = 0.1;
+planet.rotation.y = Math.PI/2*3;
 // const BackUV = new THREE.TextureLoader().load('/assets/Space/Space.png');
 // scene.background = BackUV;
 
@@ -48,8 +48,8 @@ function animate() {
 		requestAnimationFrame( animate );
 		if(rool)
 		{
-			palnet.rotation.y += 0.001;
-			if(palnet.rotation.y>Math.PI/2*3+Math.PI*2) palnet.rotation.y=Math.PI/2*3;
+			planet.rotation.y += 0.001;
+			if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
 		}
 
 		renderer.render( scene, camera );
@@ -77,31 +77,31 @@ async function animateZoom()
 	
 	requestAnimationFrame( animateZoom );
 	
-	if(palnet.scale.x <= etapdistance && palnet.scale.y <= etapdistance && palnet.scale.z <= etapdistance) etap = 2;
+	if(planet.scale.x <= etapdistance && planet.scale.y <= etapdistance && planet.scale.z <= etapdistance) etap = 2;
 	if(etap == 1)
 	{
-		if(etapdistance<palnet.scale.x) palnet.scale.x -= scaleSpeed;
-		if(etapdistance<palnet.scale.y) palnet.scale.y -= scaleSpeed;
-		if(etapdistance<palnet.scale.z) palnet.scale.z -= scaleSpeed;
+		if(etapdistance<planet.scale.x) planet.scale.x -= scaleSpeed;
+		if(etapdistance<planet.scale.y) planet.scale.y -= scaleSpeed;
+		if(etapdistance<planet.scale.z) planet.scale.z -= scaleSpeed;
 	}
 	if(etap == 2)
 	{
-		if(s>palnet.scale.x) palnet.scale.x += scaleSpeed;
-		if(s>palnet.scale.y) palnet.scale.y += scaleSpeed;
-		if(s>palnet.scale.z) palnet.scale.z += scaleSpeed;
+		if(s>planet.scale.x) planet.scale.x += scaleSpeed;
+		if(s>planet.scale.y) planet.scale.y += scaleSpeed;
+		if(s>planet.scale.z) planet.scale.z += scaleSpeed;
 		
-		if(s<palnet.scale.x) palnet.scale.x -= scaleSpeed;
-		if(s<palnet.scale.y) palnet.scale.y -= scaleSpeed;
-		if(s<palnet.scale.z) palnet.scale.z -= scaleSpeed;
+		if(s<planet.scale.x) planet.scale.x -= scaleSpeed;
+		if(s<planet.scale.y) planet.scale.y -= scaleSpeed;
+		if(s<planet.scale.z) planet.scale.z -= scaleSpeed;
 
-		if(x>palnet.rotation.x)palnet.rotation.x += goToLocationSpeed;
-		if(x<palnet.rotation.x) palnet.rotation.x -= goToLocationSpeed;
+		if(x>planet.rotation.x)planet.rotation.x += goToLocationSpeed;
+		if(x<planet.rotation.x) planet.rotation.x -= goToLocationSpeed;
 
-		if(y>palnet.rotation.y) palnet.rotation.y += goToLocationSpeed;
-		if(y<palnet.rotation.y) palnet.rotation.y -= goToLocationSpeed;
+		if(y>planet.rotation.y) planet.rotation.y += goToLocationSpeed;
+		if(y<planet.rotation.y) planet.rotation.y -= goToLocationSpeed;
 
-		if(z>palnet.rotation.z) palnet.rotation.z += goToLocationSpeed;
-		if(z<palnet.rotation.z) palnet.rotation.z -= goToLocationSpeed;
+		if(z>planet.rotation.z) planet.rotation.z += goToLocationSpeed;
+		if(z<planet.rotation.z) planet.rotation.z -= goToLocationSpeed;
 	}
 
 	renderer.render( scene, camera );
