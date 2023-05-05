@@ -116,6 +116,8 @@ function PlanetGoToAnimation()
 
 		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
 		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
+
+
 	}
 	if(AnimationStage == 3)
 	{
