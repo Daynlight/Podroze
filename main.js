@@ -64,7 +64,7 @@ function SearchLocation()
 		OldLocationsArray.value = GetLokalizationDataFromForm.value;
 		GenerateLocationsList(GetLokalizationDataFromForm.value);
 	};
-	setInterval(SearchLocation,1000);
+	setTimeout(SearchLocation,1000);
 }
 function GenerateLocationsList(text)
 {
@@ -91,22 +91,21 @@ function PlanetGoToAnimation()
 
 	requestAnimationFrame( PlanetGoToAnimation );
 	
-	if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
+	if(AnimationStage==1 && planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
+	var Distance = Math.sqrt(Math.pow(PlanetXTarget-planet.rotation.x,2)+Math.pow(PlanetYTarget-planet.rotation.y,2));
+	if((AnimationStage==2 && Distance<AnimationMoveSpeed+0.001) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.001)) 
+	AnimationStage = 3;
+	if(AnimationStage==3 &&PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed) AnimationStage=4;
+
 	if(AnimationStage == 1)
 	{
 		if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
 		if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
 		if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+		console.log("out");
 	}
 	if(AnimationStage == 2)
 	{
-		if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
-		if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
-		if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
-		
-		if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
-		if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
-		if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
 
 		if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
 		if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
@@ -116,10 +115,21 @@ function PlanetGoToAnimation()
 
 		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
 		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
-		
+		console.log("Move");
 	}
-	if((PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed)&&(PlanetXTarget-planet.rotation.x<AnimationMoveSpeed) && (PlanetYTarget-planet.rotation.y<AnimationMoveSpeed) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed)) 
-	AnimationStage = 3;
+	if(AnimationStage == 3)
+	{
+		if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
+		if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
+		if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
+		
+		if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+		if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+		if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+		console.log("In");
+	}
+	
+	
 	renderer.render( scene, camera );
 	
 }
