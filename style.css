@@ -181,7 +181,7 @@ header
   text-align: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(red,blue);
+  background-image: linear-gradient(rgb(0, 81, 255),rgb(111, 0, 255));
 }
 .Login,.Register
 {
