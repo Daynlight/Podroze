@@ -91,8 +91,9 @@ function PlanetGoToAnimation()
 
 	requestAnimationFrame( PlanetGoToAnimation );
 	
-	if(AnimationStage==1 && planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
 	var Distance = Math.sqrt(Math.pow(PlanetXTarget-planet.rotation.x,2)+Math.pow(PlanetYTarget-planet.rotation.y,2));
+
+	if(AnimationStage==1 && planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
 	if((AnimationStage==2 && Distance<AnimationMoveSpeed+0.002) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.002)) 
 	AnimationStage = 3;
 	if(AnimationStage==3 &&PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed) AnimationStage=4;
@@ -115,7 +116,6 @@ function PlanetGoToAnimation()
 
 		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
 		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
-		
 	}
 	if(AnimationStage == 3)
 	{
