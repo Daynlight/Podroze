@@ -102,7 +102,7 @@ function PlanetGoToAnimation()
 		if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
 		if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
 		if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
-		console.log("out");
+		
 	}
 	if(AnimationStage == 2)
 	{
@@ -115,7 +115,7 @@ function PlanetGoToAnimation()
 
 		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
 		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
-		console.log("Move");
+		
 	}
 	if(AnimationStage == 3)
 	{
@@ -126,7 +126,7 @@ function PlanetGoToAnimation()
 		if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
 		if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
 		if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
-		console.log("In");
+		
 	}
 	
 	
