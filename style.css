@@ -175,8 +175,8 @@ header
 {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
-  padding: calc(50% - 220px - 65px) 0px;
-  height: 220px;
+  /* padding: calc(50% - 220px - 65px) 0px; */
+  height: calc(100% - 65px);
   font-size: 40px;
   text-align: center;
   -webkit-background-clip: text;
