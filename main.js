@@ -69,7 +69,7 @@ function SearchLocation()
 function GenerateLocationsList(text)
 {
 	var id = 1;
-	var GeneratedList = '<ul id="listaArray">';
+	var GeneratedList = '<ul id="ListaArray">';
 	for(var i=0;i<LocationsArray.length;i++)
 	{
 		if(String(LocationsArray[i].Name).match(text))
@@ -80,7 +80,7 @@ function GenerateLocationsList(text)
 	}
 	GeneratedList += '</ul>';
 	document.getElementById("Lista").innerHTML = GeneratedList;
-	for(var i = 1; i< document.querySelector("#listaArray").childElementCount+1;i++)
+	for(var i = 1; i< document.querySelector("#ListaArray").childElementCount+1;i++)
 	{
 		AddOnClickFunctionForListElements(i);
 	}
@@ -93,7 +93,7 @@ function PlanetGoToAnimation()
 	
 	if(AnimationStage==1 && planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
 	var Distance = Math.sqrt(Math.pow(PlanetXTarget-planet.rotation.x,2)+Math.pow(PlanetYTarget-planet.rotation.y,2));
-	if((AnimationStage==2 && Distance<AnimationMoveSpeed+0.001) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.001)) 
+	if((AnimationStage==2 && Distance<AnimationMoveSpeed+0.002) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.002)) 
 	AnimationStage = 3;
 	if(AnimationStage==3 &&PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed) AnimationStage=4;
 
