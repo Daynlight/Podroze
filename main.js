@@ -41,13 +41,16 @@ GenerateLocationsList();
 
 
 async function PlanetDefaultAnimation() {
+	if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
+	if(planet.rotation.x>Math.PI*2) planet.rotation.x=0;
+	if(planet.rotation.z>Math.PI*2) planet.rotation.z=0;
+
 	if(RotatePlanet)
 	{
 		requestAnimationFrame( PlanetDefaultAnimation );
 		if(RollPlanet)
 		{
-			planet.rotation.y += 0.001;
-			if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
+			planet.rotation.y += 0.01;
 		}
 
 		renderer.render( scene, camera );
@@ -88,13 +91,18 @@ function GenerateLocationsList(text)
 
 function PlanetGoToAnimation()
 {
-
+	if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
+	if(planet.rotation.x>Math.PI*2) planet.rotation.x=0;
+	if(planet.rotation.z>Math.PI*2) planet.rotation.z=0;
 	requestAnimationFrame( PlanetGoToAnimation );
 	
 	var Distance = Math.sqrt(Math.pow(PlanetXTarget-planet.rotation.x,2)+Math.pow(PlanetYTarget-planet.rotation.y,2));
 
+	var Distance1 = Math.abs(planet.rotation.y - PlanetXTarget - Math.PI/2*3);
+	var Distance2 = Math.abs((2 * Math.PI) - Distance1);
+
 	if(AnimationStage==1 && planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
-	if((AnimationStage==2 && Distance<AnimationMoveSpeed+0.002) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.002)) 
+	if((AnimationStage==2 && (Distance<AnimationMoveSpeed+0.002 || 2 * Math.PI - Distance<AnimationMoveSpeed+0.002)) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.002)) 
 	AnimationStage = 3;
 	if(AnimationStage==3 &&PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed) AnimationStage=4;
 
@@ -111,12 +119,15 @@ function PlanetGoToAnimation()
 		if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
 		if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
 
-		if(PlanetYTarget>planet.rotation.y) planet.rotation.y += AnimationMoveSpeed;
-		if(PlanetYTarget<planet.rotation.y) planet.rotation.y -= AnimationMoveSpeed;
-
 		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
 		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
 
+		
+
+		if(Distance1 < Distance2 && planet.rotation.y > PlanetYTarget) planet.rotation.y -= AnimationMoveSpeed; 
+		if(Distance1 >= Distance2 && planet.rotation.y > PlanetYTarget) planet.rotation.y += AnimationMoveSpeed; 
+		if(Distance1 < Distance2 && planet.rotation.y < PlanetYTarget) planet.rotation.y += AnimationMoveSpeed; 
+		if(Distance1 >= Distance2 && planet.rotation.y < PlanetYTarget) planet.rotation.y -= AnimationMoveSpeed; 
 
 	}
 	if(AnimationStage == 3)
