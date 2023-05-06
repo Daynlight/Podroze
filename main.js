@@ -50,7 +50,7 @@ async function PlanetDefaultAnimation() {
 		requestAnimationFrame( PlanetDefaultAnimation );
 		if(RollPlanet)
 		{
-			planet.rotation.y += 0.01;
+			planet.rotation.y += 0.001;
 		}
 
 		renderer.render( scene, camera );
