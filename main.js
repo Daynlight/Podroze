@@ -39,7 +39,6 @@ PlanetDefaultAnimation();
 SearchLocation();
 GenerateLocationsList();
 
-
 async function PlanetDefaultAnimation() {
 	if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
 	if(planet.rotation.x>Math.PI*2) planet.rotation.x=0;
