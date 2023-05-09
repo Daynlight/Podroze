@@ -1,5 +1,4 @@
-import DataPodrozy from '/Data/Podróże.json';
-import DataLokations from '/Data/Lokalizacja.json';
+
 
 function ChangeBetwenLoginOrRegister(ModeLogin = false)
 {
@@ -41,11 +40,3 @@ function ChangeBetwenLoginOrRegister(ModeLogin = false)
 		document.getElementById("LoginOrRegister").innerHTML = RegisterFormBTN;
 	}
 }
-function CreateTable(id = 1)
-{
-	var Table = `<table><tr><td>Kraj</td><td>Data Podróży</td><td>Cena</td><td>Bagaż</td><td>Miejsca</td>`
-	
-	Table +=`</table>`;
-	document.getElementById("Table").innerHTML= Table;
-}
-CreateTable();

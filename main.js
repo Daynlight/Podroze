@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import DataLokations from '/Data/Lokalizacja.json';
+import DataPodrozy from '/Data/Podróże.json';
 
+var PodróżeArray = DataPodrozy["Podróż"];
 var LocationsArray = DataLokations["Lokalizacja"];
 var Height = window.innerHeight;
 var Width = window.innerWidth;
@@ -76,7 +78,7 @@ function GenerateLocationsList(text)
 	{
 		if(String(LocationsArray[i].Name).match(text))
 		{
-			GeneratedList += '<li id="ListElement'+id+'" class="ListElement" onclick="CreateTable('+id+')" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
+			GeneratedList += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
 			id++;
 		}
 	}
@@ -164,12 +166,44 @@ function AddOnClickFunctionForListElements(id = 1)
 				RotatePlanet = false;
 				
 			}
+			CreateTable(id);
 		}
 	})
 }
+function CreateTable(id = 1)
+{
+	var Table = `<table><tr><th>Miejsca</th><th>Kraj</th><th>Data Podróży</th><th>Cena</th><th>Bagaż</th></tr>`
+	var PodróżCounter = 0;
+
+    while(PodróżCounter<PodróżeArray.length)
+    {
+        if(id==PodróżeArray[PodróżCounter].idKraju)Table += `<tr><td>${PodróżeArray[PodróżCounter].Name}</td><td>${LocationsArray[id-1].Name}</td><td>${PodróżeArray[PodróżCounter].Data}</td><td>${PodróżeArray[PodróżCounter].Cena}</td><td>${PodróżeArray[PodróżCounter].Bagaż}</td></tr>`;
+        PodróżCounter++;
+    }
 
 
+	PodróżCounter = 0;
 
+	Table +=`</table>`;
+	document.getElementById("Table").innerHTML= Table;
+}
+function DefaultCreateTable()
+{
+	var Table = `<table><tr><th>Miejsca</th><th>Kraj</th><th>Data Podróży</th><th>Cena</th><th>Bagaż</th></tr>`
+	var PodróżCounter = 0;
+    while(PodróżCounter<PodróżeArray.length)
+    {
+        Table += `<tr><td>${PodróżeArray[PodróżCounter].Name}</td><td>${LocationsArray[(PodróżeArray[PodróżCounter].idKraju)-1].Name}</td><td>${PodróżeArray[PodróżCounter].Data}</td><td>${PodróżeArray[PodróżCounter].Cena}</td><td>${PodróżeArray[PodróżCounter].Bagaż}</td></tr>`;
+        PodróżCounter++;
+    }
+
+
+	PodróżCounter = 0;
+
+	Table +=`</table>`;
+	document.getElementById("Table").innerHTML= Table;
+}
+DefaultCreateTable();
 
 
 
