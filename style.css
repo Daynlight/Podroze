@@ -39,7 +39,7 @@ header
   padding: 20px;
   height: calc(100% - 65px);
   background-image: url(/assets/Table/Table.png);
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   font-size: 20px;
 }
