@@ -34,6 +34,11 @@ header
   animation-duration: 500s;
   animation-iteration-count: infinite;
 }
+.TravelList
+{
+  width: 100%;
+  height: calc(100vh - 65px);
+}
 .ElementSpace
 {
   scroll-snap-align: start;
