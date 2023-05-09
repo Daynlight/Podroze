@@ -76,7 +76,7 @@ function GenerateLocationsList(text)
 	{
 		if(String(LocationsArray[i].Name).match(text))
 		{
-			GeneratedList += '<li id="ListElement'+id+'" class="ListElement" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
+			GeneratedList += '<li id="ListElement'+id+'" class="ListElement" onclick="CreateTable('+id+')" value="'+LocationsArray[i].id+'">'+LocationsArray[i].Name+'</li>';
 			id++;
 		}
 	}
