@@ -59,21 +59,16 @@ async function PlanetDefaultAnimation() {
 		renderer.render( scene, camera );
 	}
 }
+
 function PlanetSizeRefresh()
 {
-
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	
-
-
 }
-
 
 function SearchLocation()
 {
-	
 	var GetLokalizationDataFromForm = document.querySelector("#SchearchPlace");
 	if(OldLocationsArray.value != GetLokalizationDataFromForm.value)
 	{
@@ -114,47 +109,67 @@ function PlanetGoToAnimation()
 	var Distance1 = Math.abs(planet.rotation.y - PlanetXTarget - Math.PI/2*3);
 	var Distance2 = Math.abs((2 * Math.PI) - Distance1);
 
-	if(AnimationStage==1 && planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut) AnimationStage = 2;
-	if((AnimationStage==2 && (Distance<AnimationMoveSpeed+0.002 || 2 * Math.PI - Distance<AnimationMoveSpeed+0.002)) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.002)) 
-	AnimationStage = 3;
-	if(AnimationStage==3 &&PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed) AnimationStage=4;
-
-	if(AnimationStage == 1)
+	switch (AnimationStage)
 	{
-		if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
-		if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
-		if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
-		
+		case 1:
+			{
+				if(planet.scale.x <= AnimationZoomOut && planet.scale.y <= AnimationZoomOut && planet.scale.z <= AnimationZoomOut)
+				AnimationStage = 2;
+				break;
+			}
+		case 2:
+			{
+				if(((Distance<AnimationMoveSpeed+0.002 || 2 * Math.PI - Distance<AnimationMoveSpeed+0.002)) && (PlanetZTarget-planet.rotation.z<AnimationMoveSpeed+0.002))
+				AnimationStage = 3;
+				break;
+			}
+		case 3:
+			{
+				if(PlanetScaleTarget-planet.scale.x<AnimationScaleSpeed)
+				AnimationStage=4;
+				break;
+			}
 	}
-	if(AnimationStage == 2)
+
+	switch (AnimationStage)
 	{
+	case 1:
+		{
+			if(AnimationZoomOut<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+			if(AnimationZoomOut<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+			if(AnimationZoomOut<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+			break;
+		}
+	case 2:
+		{
 
-		if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
-		if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
+			if(PlanetXTarget>planet.rotation.x)planet.rotation.x += AnimationMoveSpeed;
+			if(PlanetXTarget<planet.rotation.x) planet.rotation.x -= AnimationMoveSpeed;
 
-		if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
-		if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
+			if(PlanetZTarget>planet.rotation.z) planet.rotation.z += AnimationMoveSpeed;
+			if(PlanetZTarget<planet.rotation.z) planet.rotation.z -= AnimationMoveSpeed;
 
-		
+			
 
-		if(Distance1 < Distance2 && planet.rotation.y > PlanetYTarget) planet.rotation.y -= AnimationMoveSpeed; 
-		if(Distance1 >= Distance2 && planet.rotation.y > PlanetYTarget) planet.rotation.y += AnimationMoveSpeed; 
-		if(Distance1 < Distance2 && planet.rotation.y < PlanetYTarget) planet.rotation.y += AnimationMoveSpeed; 
-		if(Distance1 >= Distance2 && planet.rotation.y < PlanetYTarget) planet.rotation.y -= AnimationMoveSpeed; 
+			if(Distance1 < Distance2 && planet.rotation.y > PlanetYTarget) planet.rotation.y -= AnimationMoveSpeed; 
+			if(Distance1 >= Distance2 && planet.rotation.y > PlanetYTarget) planet.rotation.y += AnimationMoveSpeed; 
+			if(Distance1 < Distance2 && planet.rotation.y < PlanetYTarget) planet.rotation.y += AnimationMoveSpeed; 
+			if(Distance1 >= Distance2 && planet.rotation.y < PlanetYTarget) planet.rotation.y -= AnimationMoveSpeed; 
 
+			break;
+		}
+	case 3:
+		{
+			if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
+			if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
+			if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
+			
+			if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
+			if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
+			if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
+			break;
+		}
 	}
-	if(AnimationStage == 3)
-	{
-		if(PlanetScaleTarget>planet.scale.x) planet.scale.x += AnimationScaleSpeed;
-		if(PlanetScaleTarget>planet.scale.y) planet.scale.y += AnimationScaleSpeed;
-		if(PlanetScaleTarget>planet.scale.z) planet.scale.z += AnimationScaleSpeed;
-		
-		if(PlanetScaleTarget<planet.scale.x) planet.scale.x -= AnimationScaleSpeed;
-		if(PlanetScaleTarget<planet.scale.y) planet.scale.y -= AnimationScaleSpeed;
-		if(PlanetScaleTarget<planet.scale.z) planet.scale.z -= AnimationScaleSpeed;
-		
-	}
-	
 	
 	renderer.render( scene, camera );
 	
@@ -182,6 +197,7 @@ function AddOnClickFunctionForListElements(id = 1)
 		}
 	})
 }
+
 function CreateTable(id = 1)
 {
 	var Table = `<table><tr><th>Miejsca</th><th>Kraj</th><th>Data Podróży</th><th>Cena</th><th>Bagaż</th></tr>`
@@ -193,12 +209,9 @@ function CreateTable(id = 1)
         PodróżCounter++;
     }
 
-
 	PodróżCounter = 0;
-
 	Table +=`</table>`;
 	document.getElementById("Table").innerHTML= Table;
-	// location.href = "#TravelList";
 }
 function DefaultCreateTable()
 {
