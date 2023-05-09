@@ -186,6 +186,7 @@ function CreateTable(id = 1)
 
 	Table +=`</table>`;
 	document.getElementById("Table").innerHTML= Table;
+	location.href = "#TravelList";
 }
 function DefaultCreateTable()
 {
