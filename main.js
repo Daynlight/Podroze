@@ -40,6 +40,8 @@ scene.add( light );
 PlanetDefaultAnimation();
 SearchLocation();
 GenerateLocationsList();
+DefaultCreateTable();
+
 
 async function PlanetDefaultAnimation() {
 	if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
@@ -204,7 +206,6 @@ function DefaultCreateTable()
 	Table +=`</table>`;
 	document.getElementById("Table").innerHTML= Table;
 }
-DefaultCreateTable();
 
 
 
