@@ -41,7 +41,7 @@ PlanetDefaultAnimation();
 SearchLocation();
 GenerateLocationsList();
 DefaultCreateTable();
-
+window.addEventListener("resize", PlanetSizeRefresh);
 
 async function PlanetDefaultAnimation() {
 	if(planet.rotation.y>Math.PI/2*3+Math.PI*2) planet.rotation.y=Math.PI/2*3;
@@ -58,6 +58,16 @@ async function PlanetDefaultAnimation() {
 
 		renderer.render( scene, camera );
 	}
+}
+function PlanetSizeRefresh()
+{
+
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	
+
+
 }
 
 
