@@ -42,6 +42,7 @@ header
   background-size: cover;
   background-repeat: no-repeat;
   font-size: 20px;
+  overflow: scroll;
 }
 .Table table, .Table tr
 {
@@ -176,7 +177,6 @@ header
 #PlacePlanet,.PlanetInput
 {
   position: absolute;
-  width: 20%;
 }
 .PlanetInput input
 {
@@ -189,7 +189,7 @@ header
   font-size: 20px;
   border: 3px solid rgb(0, 255, 221);
   border-radius: 10px;
-  width: 20%;
+  width: 100%;
   max-height: calc(100vh - 65px - 60px);
   overflow: auto;
   top:60px;
@@ -199,6 +199,7 @@ header
 {
   font-size: 20px;
   height: 40px;
+  width: 100%;
 }
 .WelcomeMessage
 {
@@ -265,6 +266,18 @@ header
   padding: 0px 10px 10px 10px;
   height: calc(100vh - 65px - 65px - 220px - 50px);
 }
+.PlanetInput
+{
+  width: 100%;
+  padding: 0 10px;
+}
+.Lista
+{
+  width: calc(100% - 20px);
+  margin: 0 10px;
+  background-color: #0000003f;
+}
+
 .LoginRegisterInputForm input,.LoginRegisterInputForm,.PlanetInput input
 {
   width: 100%;
