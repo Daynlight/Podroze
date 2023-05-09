@@ -17,6 +17,24 @@
             "Cena": "700 zl",
             "idKraju": 2
 
+        },
+        {
+            "id":3,
+            "Name": "Gdańsk",
+            "Data": "12-02-2024",
+            "Bagaż": "Do 3 KG",
+            "Cena": "400 zl",
+            "idKraju": 1
+
+        },
+        {
+            "id":4,
+            "Name": "Wrocław",
+            "Data": "21-11-2023",
+            "Bagaż": "Do 1 KG",
+            "Cena": "600 zl",
+            "idKraju": 1
+
         }
     ]
 }
