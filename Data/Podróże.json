@@ -6,14 +6,16 @@
             "Name": "Warszawa",
             "Data": "12-05-2023",
             "Bagaz": "Do 2 KG",
-            "Cena": "500 zl"
+            "Cena": "500 zl",
+            "idKraju": 1
         },
         {
             "id":2,
             "Name": "Berlin",
             "Data": "23-07-2023",
             "Bagaz": "Do 1 KG",
-            "Cena": "700 zl"
+            "Cena": "700 zl",
+            "idKraju": 2
 
         }
     ]
