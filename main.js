@@ -176,4 +176,3 @@ function AddOnClickFunctionForListElements(id = 1)
 
 
 
-
