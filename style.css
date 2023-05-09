@@ -25,7 +25,7 @@ header
 {
   position: relative;
   width: 100%;
-  height: calc(100vh - 65px);
+  height: calc(100vh - 45px);
   background-image: url(/assets/Space/Space.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -37,7 +37,7 @@ header
 {
   width: 100%;
   padding: 20px;
-  height: calc(100% - 65px);
+  height: calc(100% - 45px);
   background-image: url(/assets/Table/Table.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -69,14 +69,19 @@ header
 {
  
   scroll-snap-align: start;
-  height: 65px;
+  height: 45px;
 
+}
+.NavBar1
+{
+  height: 45px;
 }
 .NavItem,.NavItemIcon
 {
   font-size: 20px;
   color: white;
   margin: 0 10px;
+  height: 45px;
   text-decoration: none;
   transition: 1s;
 }
@@ -89,7 +94,7 @@ header
 .NavItemIcon img
 {
   filter: invert(1); 
-  height: 50px;
+  height: 25px;
   transition: 1s;
   
 }
@@ -101,7 +106,7 @@ header
 .Welcome
 {
   width: 100%;
-  height: calc(100vh - 65px);
+  height: calc(100vh - 45px);
   color:black;
   font-size: 20px;
   background-image: url(assets/Main/Main.png);
@@ -190,7 +195,7 @@ header
   border: 3px solid rgb(0, 255, 221);
   border-radius: 10px;
   width: 100%;
-  max-height: calc(100vh - 65px - 60px);
+  max-height: calc(100vh - 45px - 60px);
   overflow: auto;
   top:60px;
 }
@@ -198,16 +203,16 @@ header
 #SchearchPlace
 {
   font-size: 20px;
-  height: 40px;
+  height: 45px;
   width: 100%;
 }
 .WelcomeMessage
 {
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
-  /* padding: calc(50% - 220px - 65px) 0px; */
-  height: calc(100% - 65px);
-  font-size: 40px;
+  /* padding: calc(50% - 220px - 45px) 0px; */
+  height: calc(100% - 45px);
+  font-size: 45px;
   text-align: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -264,7 +269,7 @@ header
   border: 1px solid black;
   border-radius: 0 0 10px 10px;
   padding: 0px 10px 10px 10px;
-  height: calc(100vh - 65px - 65px - 220px - 50px);
+  height: calc(100vh - 40px - 45px - 220px - 50px);
 }
 .PlanetInput
 {
