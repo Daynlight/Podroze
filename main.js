@@ -41,6 +41,8 @@ PlanetDefaultAnimation();
 SearchLocation();
 GenerateLocationsList();
 DefaultCreateTable();
+NavbarFolowMouse();
+
 window.addEventListener("resize", PlanetSizeRefresh);
 
 async function PlanetDefaultAnimation() {
@@ -230,7 +232,25 @@ function DefaultCreateTable()
 	document.getElementById("Table").innerHTML= Table;
 }
 
+function NavbarFolowMouse()
+{
+	var Element = document.getElementById("NavBar1");
+	Element.addEventListener("mousemove",(e)=>
+	{
+		var MouseX = e.clientX;
+		var MouseY = e.clientY;
+		Element.style.setProperty("--mouse-x",`${MouseX}px`);
+		Element.style.setProperty("--mouse-y",`${MouseY}px`);
 
+
+	})
+	Element.addEventListener("mouseleave",(e)=>
+	{
+		Element.style.setProperty("--mouse-x",`-1000px`);
+		Element.style.setProperty("--mouse-y",`-1000px`);
+	})
+
+}
 
 
 
